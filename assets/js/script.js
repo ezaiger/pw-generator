@@ -17,14 +17,20 @@ const specialChar = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',',
 // Click button to generate a password
 
 // Prompt for length of password (between 8 to 128 characters)
+var pwLength = window.prompt("How many characters would you like your password to have?");
 
 // Prompt for character types to include in the password (lowercase, uppercase, numeric, and/or special characters) (OK = YES, CANCEL = NO)
+var includeLow = window.prompt("Would you like to include lowercase letters?");
+var includeUpp = window.prompt("Would you like to include uppercase letters?");
+var includeNum = window.prompt("Would you like to include numbers?");
+var includeSpc = window.prompt("Would you like to include special characters?");
 
 // Input should be validated and at lease one character type should be selected
 
 // A password is generated that matches the selected criteria
 
 // Password is displayed in an alert or written to the page
+
 
 
 // Get references to the #generate element
