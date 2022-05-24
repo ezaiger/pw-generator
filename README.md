@@ -15,4 +15,4 @@ https://ezaiger.github.io/pw-generator/
 * Original code provided by courses.bootcampspot.com
 * Refactored code by EZaiger
 
-![alt text](assets/images/ezaiger.github.io_pw-generator_.png "Screenshot of completed password generator")
+![alt text](./assets/images/pw-generator-screenshot.png "Screenshot of completed password generator")
