@@ -13,6 +13,7 @@ https://ezaiger.github.io/pw-generator/
 
 ## Contribution
 * Original code provided by courses.bootcampspot.com
+* Tutoring assistance by Phil L.
 * Refactored code by EZaiger
 
 ![alt text](./assets/images/pw-generator-screenshot.png "Screenshot of completed password generator")
