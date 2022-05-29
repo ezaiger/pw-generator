@@ -1,8 +1,9 @@
+// ** GLOBAL SCOPE/VARIABLES **
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // **CHARACTERS**
-
 // List of lowercase letters
 const lowercaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -15,6 +16,16 @@ const numericalChararacters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 // List of special characters
 const specialCharacters = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~',];
 
+// Character Selection Section
+function charSelection(finalPassword, pwLength, checking, array, range) {
+  if (checking === true && finalPassword.length < pwLength) {
+    var randomIndex = Math.floor(Math.random() * range);
+    console.log("randomIndex", randomIndex);
+    finalPassword = finalPassword + array[randomIndex];
+  }
+  return finalPassword;
+}
+
 // **GENERATOR PROCESS**
 
 // Click button to generate a password
@@ -23,7 +34,7 @@ function generatePassword() {
 
   // Prompt for length of password (between 8 to 128 characters)
   var pwLength = prompt("How many characters would you like your password to have? (Remember: Password must be between 8 to 128 characters.)");
-  
+
   if (pwLength >= 8 && pwLength <= 128) {
     // Prompt (confirm) for character types to include in the password (lowercase, uppercase, numeric, and/or special characters) (OK = YES, CANCEL = NO)
     var includeLowerCase = confirm("Would you like to include lowercase letters? Click OK for yes, Cancel for no.");
@@ -40,27 +51,36 @@ function generatePassword() {
       alert("Invalid entry. Please select at lease one character type.");
       return null;
     }
-    
-    if (includeLowerCase === true) {
-      var randomIndex = Math.floor(Math.random() * 26);
-      console.log("randomIndex", randomIndex);
-      finalPassword = finalPassword + lowercaseLetters[randomIndex];
+
+    for (let i = 0; i <= pwLength; i++) {
+      
+      finalPassword = charSelection(finalPassword, pwLength, includeLowerCase, lowercaseLetters, 26)
+      finalPassword = charSelection(finalPassword, pwLength, includeUpperCase, uppercaseLetters, 26)
+      finalPassword = charSelection(finalPassword, pwLength, includeNumerical, numericalChararacters, 10)
+      finalPassword = charSelection(finalPassword, pwLength, includeSpecial, specialCharacters, specialCharacters.length)
+
+      // if (includeLowerCase === true && finalPassword.length < pwLength)  {
+      //   var randomIndex = Math.floor(Math.random() * 26);
+      //   console.log("randomIndex", randomIndex);
+      //   finalPassword = finalPassword + lowercaseLetters[randomIndex];
+      // }
+      // if (includeUpperCase === true && finalPassword.length < pwLength) {
+      //   var randomIndex = Math.floor(Math.random() * 26);
+      //   console.log("randomIndex", randomIndex);
+      //   finalPassword = finalPassword + uppercaseLetters[randomIndex];
+      // }
+      // if (includeNumerical === true && finalPassword.length < pwLength) {
+      //   var randomIndex = Math.floor(Math.random() * 10);
+      //   console.log("randomIndex", randomIndex);
+      //   finalPassword = finalPassword + numericalChararacters[randomIndex];
+      // }
+      // if (includeSpecial === true && finalPassword.length < pwLength) {
+      //   var randomIndex = Math.floor(Math.random() * specialCharacters.length);
+      //   console.log("randomIndex", randomIndex);
+      //   finalPassword = finalPassword + specialCharacters[randomIndex];
+      // }
     }
-    if (includeUpperCase === true) {
-      var randomIndex = Math.floor(Math.random() * 26);
-      console.log("randomIndex", randomIndex);
-      finalPassword = finalPassword + uppercaseLetters[randomIndex];
-    }
-    if (includeNumerical === true) {
-      var randomIndex = Math.floor(Math.random() * 10);
-      console.log("randomIndex", randomIndex);
-      finalPassword = finalPassword + numericalChararacters[randomIndex];
-    }
-    if (includeSpecial === true) {
-      var randomIndex = Math.floor(Math.random() * specialCharacters.length);
-      console.log("randomIndex", randomIndex);
-      finalPassword = finalPassword + specialCharacters[randomIndex];
-    }
+
     // Input should be validated and at lease one character type should be selected
   } else {
     alert("Invalid entry. Please enter a number between 8 and 128.");
@@ -74,7 +94,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-// Password is displayed - written to the page
+  // Password is displayed - written to the page
   passwordText.value = password;
 }
 
